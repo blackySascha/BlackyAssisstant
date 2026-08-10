@@ -1,13 +1,6 @@
-
-#Blacky Assisstant v0.3.2
+#Blacky Assisstant v0.3.2.000
 import tkinter as tk
 import tkinter
-import os
-import platform
-import psutil
-import socket
-import sys
-import shutil
 def clear_screen():
     for widget in window.winfo_children():
         widget.destroy()
@@ -19,8 +12,8 @@ def calculator():
     button_calculator.destroy()
     global button_notes
     button_notes.destroy()
-    global button_informations
-    button_informations.destroy()
+    global button_information
+    button_information.destroy()
     global button_terminal
     button_terminal.destroy()
     def get_num1():
@@ -73,72 +66,9 @@ def calculator():
     button_div.place(x=270, y=220)
     text_answer.place(x=200, y=300)
 
-def information():
-    print("Information button works")
-    global button_notes
-    global button_informations
-    global button_terminal
-    global button_calculator
-    button_calculator.destroy()
-    button_notes.destroy()
-    button_terminal.destroy()
-    button_informations.destroy()
-    info_window = tk.Toplevel()
-    info_window.title("Blacky Assisstant - Information")
-    info_window.geometry("570x700")
-    system_info = f"""
-BLACKY ASSISSTANT
-===============================
-
-BLACKY ASSISSTANT INFORMATION
-VERSION: 0.4.0
-STATUS: Running
-GUI: Tkinter
-Python: {platform.python_version()}
-
-SYSTEM INFO
-===============================
-
-Operating System: {platform.system()}
-OS Version: {platform.version()}
-Kernel: {platform.release()}
-Architecture: {platform.machine()}
-Hostname: {socket.gethostname()}
-
-HARDWARE INFO
-===============================
-
-Processor: {platform.processor()}
-CPU Usage: {psutil.cpu_percent()}%
-RAM: {round(psutil.virtual_memory().total / (1024**3), 2)} GB
-RAM Usage {psutil.virtual_memory().percent}%
-
-STORAGE
-===============================
-
-Disk Total: {round(psutil.disk_usage('/').total / (1024**3), 2)} GB
-Disk Usage {psutil.disk_usage('/').percent}%
-Disk Used: {round(psutil.disk_usage('/').used / (1024**3), 2)} GB
-Disk Free: {round(psutil.disk_usage('/').free / (1024**3), 2)} GB
-
-"""
-    label_systeminfo = tk.Label(
-        info_window,
-        text=system_info,
-        justify="left",
-        font=("Consolas", 11),
-        bg="black",
-        fg="green"
-    )
-
-    label_systeminfo.pack(
-        padx=20,
-        pady=20,
-        anchor="w"
-    )
 def startba():
     global button_notes
-    global button_informations
+    global button_information
     global button_terminal
     global button_calculator
     button_start.destroy()
@@ -146,8 +76,8 @@ def startba():
     button_calculator.place(x=100,y=100)
     button_notes = tk.Button(window,text="Notes",width=10,bg="black",fg="white")
     button_notes.place(x=200,y=100)
-    button_informations = tk.Button(window,text="Information",width=10,bg="black",fg="white",command=information)
-    button_informations.place(x=300,y=100)
+    button_information = tk.Button(window,text="Information",width=10,bg="black",fg="white")
+    button_information.place(x=300,y=100)
     button_terminal = tk.Button(window,text="Terminal",width=10,bg="black",fg="white")
     button_terminal.place(x=400,y=100)
     button_exit = tk.Button(window, text="Home", width=10, bg="black", fg="white", command=home)
@@ -162,10 +92,5 @@ label_welcome = tk.Label(window, text="Welcome to Blacky Assisstant")
 label_welcome.place(x=170, y=50)
 button_start = tk.Button(window,text="Start Blacky Assisstant v0.2.0",bg="black",fg="white",command=startba)
 button_start.place(x=200, y=250)
-
-
-
-
-
 
 window.mainloop()
